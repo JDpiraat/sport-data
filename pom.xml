@@ -1,0 +1,118 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>be.johan40</groupId>
+	<artifactId>SpringMVCtemplate</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-framework-bom</artifactId>
+				<version>4.0.5.RELEASE</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	<dependencies>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.0.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency> <!-- gebruik JSP’s -->
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>[2.2,]</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency> <!-- gebruik JSTL -->
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+		<dependency> <!-- gebruik Spring MVC -->
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+		<dependency> <!-- unit testing met junit -->
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>[4,]</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency> <!-- mock objecten maken voor testing met mockito -->
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>[1.9,]</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency> <!-- Hibernate Validator dependency -->
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>[5.1.0, 5.1.99]</version>
+		</dependency>
+		<dependency> <!-- beschermen tegen cross-site scripting (xss) @SafeHtml nog bij velden zetten -->
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>1.7.2</version>
+		</dependency>
+		<!-- <dependency> als je met JDBC ipv JPA-hibernate zou werken ... 
+			<groupId>org.springframework</groupId> 
+			<artifactId>spring-jdbc</artifactId> 
+		</dependency> -->
+		<dependency> <!-- voor integration tests -->
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>[5.1,]</version>
+			<scope>test</scope>
+			</dependency>
+		<dependency> <!-- spring + hibernate -->
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>[4.3, 4.3.99]</version>
+		</dependency>	
+		<dependency> <!--  spring data (=> geen DAO implementaties meer nodig) -->
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+			<version>[1.6.0,]</version>
+		</dependency>
+		<dependency> <!--  testen met een in-memory database -->
+			<groupId>org.wisdom-framework</groupId>
+			<artifactId>hsqldb</artifactId>
+			<version>[2.3,]</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+</project>
