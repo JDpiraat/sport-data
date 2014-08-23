@@ -11,11 +11,12 @@ public class Sportsman implements Serializable {
 	private long id;
 	private String firstName;
 	private String lastName;
-	private GregorianCalendar birthDay;
+	private GregorianCalendar birthday;
 	private double kilogram;
 	private double lengthInMeters;
 	private short maxHeartbeats;
 	private boolean autoMaxHeartbeats;
 	private List<Track> tracks;
+	private List<SportsSession> sportsSessions;
 
 }

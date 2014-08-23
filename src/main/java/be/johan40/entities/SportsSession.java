@@ -17,6 +17,7 @@ public class SportsSession implements Serializable {
 	private short maxHeartbeatsPerMinute;
 	private short kilocalories;
 	private String remark;
-	private Track track;	
+	private Track track;
+	private Sportsman sportsman;
 	
 }
