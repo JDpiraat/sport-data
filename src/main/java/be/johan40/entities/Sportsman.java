@@ -12,7 +12,7 @@ public class Sportsman implements Serializable {
 	private String firstName;
 	private String lastName;
 	private GregorianCalendar birthday;
-	private double kilogram;
+	private double weightInKilogram;
 	private double lengthInMeters;
 	private short maxHeartbeats;
 	private boolean autoMaxHeartbeats;
