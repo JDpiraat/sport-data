@@ -18,7 +18,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import be.johan40.datasource.CreateTestDataSourceBean;
-import be.johan40.entities.EigenEntity;
+//import be.johan40.entities.EigenEntity;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { CreateTestDataSourceBean.class,
@@ -29,8 +29,8 @@ CreateTestDAOBeans.class, })
 // omringt elke test met een transactie, na de test rollback
 public class EigenEntityDAOImplTest {
 	
-	@Autowired
-	private EigenEntityDAO entityDAO;
+//	@Autowired
+//	private EigenEntityDAO entityDAO;
 	@Test
 	public void create() {
 	// EigenEntity entity=new EigenEntity();

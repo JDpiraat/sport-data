@@ -36,11 +36,11 @@ public class EigenEntityController {
 		this.entityService = entityService;
 	}
 
-	@RequestMapping(method = RequestMethod.GET)
-	ModelAndView findAll() {
-		return new ModelAndView(ENTITIES_VIEW, "entities",
-				entityService.findAll());
-	}
+//	@RequestMapping(method = RequestMethod.GET)
+//	ModelAndView findAll() {
+//		return new ModelAndView(ENTITIES_VIEW, "entities",
+//				entityService.findAll());
+//	}
 
 	@RequestMapping(method = RequestMethod.POST)
 	String create() {
