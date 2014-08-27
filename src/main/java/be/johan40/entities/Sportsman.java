@@ -4,19 +4,22 @@ import java.io.Serializable;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
-import org.springframework.transaction.annotation.Transactional;
+import javax.persistence.JoinColumn;
+import javax.persistence.OrderBy;
+import javax.persistence.Table;
 
 import be.johan40.valueobjects.LengthInMeters;
 import be.johan40.valueobjects.MaxHeartbeats;
 import be.johan40.valueobjects.SportsSession;
 import be.johan40.valueobjects.WeightInKg;
 
-@Entity(name = "sportsman")
-@Transactional(readOnly = true)
+@Entity
+@Table(name = "sportsman")
 public class Sportsman implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -27,9 +30,17 @@ public class Sportsman implements Serializable {
 	private String firstName;
 	private String lastName;
 	private GregorianCalendar birthday;
-
+	@ElementCollection
+	@CollectionTable(name = "weight", joinColumns = @JoinColumn(name = "id"))
+	@OrderBy("weightInKg.startDateEndDate.startDate desc")
 	private WeightInKg weightInKg;
+	@ElementCollection
+	@CollectionTable(name = "length", joinColumns = @JoinColumn(name = "id"))
+	@OrderBy("lengthInMeters.startDateEndDate.startDate desc")
 	private LengthInMeters lengthInMeters;
+	@ElementCollection
+	@CollectionTable(name = "maxheartbeats", joinColumns = @JoinColumn(name = "id"))
+	@OrderBy("maxHeartbeats.startDateEndDate.startDate desc")
 	private MaxHeartbeats maxHeartbeats;
 	private boolean autoMaxHeartbeats;
 	private List<Track> tracks;

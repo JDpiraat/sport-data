@@ -4,10 +4,10 @@ import java.io.Serializable;
 import java.sql.Time;
 import java.util.GregorianCalendar;
 
-import javax.persistence.CollectionTable;
 import javax.persistence.Embeddable;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-import be.johan40.entities.Sportsman;
 import be.johan40.entities.Track;
 
 @Embeddable
@@ -15,6 +15,7 @@ public class SportsSession implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	@Temporal(TemporalType.TIMESTAMP)
 	private GregorianCalendar date;
 	private Time time;
 	private short heartbeatsPerMinute;

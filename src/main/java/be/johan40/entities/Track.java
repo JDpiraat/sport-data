@@ -6,14 +6,13 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
-import org.springframework.transaction.annotation.Transactional;
+import javax.persistence.Table;
 
 import be.johan40.enums.Activiteit;
 import be.johan40.enums.Status;
 
-@Entity(name = "track")
-@Transactional(readOnly = true)
+@Entity
+@Table(name = "track")
 public class Track implements Serializable {
 
 	private static final long serialVersionUID = 1L;
