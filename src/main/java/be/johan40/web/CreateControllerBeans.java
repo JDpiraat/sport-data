@@ -43,7 +43,7 @@ public class CreateControllerBeans extends WebMvcConfigurerAdapter {
 				"/scripts/");
 	}
 
-	// deze request mogen rechtstreeks door (niet naar controler beans dus)
+	// deze request mogen rechtstreeks door naar jsp (niet naar controler beans dus)
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/info").setViewName("info");
