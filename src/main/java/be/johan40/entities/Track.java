@@ -12,8 +12,6 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 import be.johan40.enums.Activity;
@@ -38,11 +36,7 @@ public class Track implements Serializable {
 	private String remark;
 	@Enumerated(EnumType.STRING)
 	@Column(length = 20)
-	private Status status;
-	@ElementCollection
-	@CollectionTable(name = "sportsmantrack", joinColumns = @JoinColumn(name = "trackId"))
-	@OrderBy("sportsman.lastName desc")
-	private Set<SportsmanTrack> sportsmanTracks;
+	private Status status;	
 
 	protected Track() {
 	}
@@ -105,19 +99,7 @@ public class Track implements Serializable {
 	public void setStatus(Status status) {
 		this.status = status;
 	}
-
-	public Set<SportsmanTrack> getSportsmanTracks() {
-		return Collections.unmodifiableSet(sportsmanTracks);
-	}
-
-//	protected void setSportsmanTracks(Set<SportsmanTrack> sportsmanTracks) {
-//		this.sportsmanTracks = sportsmanTracks;
-//	}
-
-//	public void addSportsmanTracks(SportsmanTrack sportsmanTrack) {
-//		sportsmanTracks.add(sportsmanTrack);
-//	}
-
+	
 	public long getId() {
 		return id;
 	}

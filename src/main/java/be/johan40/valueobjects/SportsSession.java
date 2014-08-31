@@ -30,8 +30,7 @@ public class SportsSession implements Serializable {
 	private short kilocalories;
 	private String remark;
 	@ManyToOne
-	@JoinColumn(name = "trackId")
-	@Column(nullable = false)
+	@JoinColumn(name = "trackId")	
 	private Track track;
 
 	protected SportsSession() {
