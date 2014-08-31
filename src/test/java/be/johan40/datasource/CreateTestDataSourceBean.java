@@ -10,8 +10,8 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 public class CreateTestDataSourceBean {
 	@Bean
 	DataSource dataSource() {
-	return new DriverManagerDataSource("jdbc:mysql://localhost/mijndb",
-	"root", "vdab");
+	return new DriverManagerDataSource("jdbc:mysql://localhost/sportsdata",
+	"root", "v1d2_a3B+*f1");
 	// of voor testen met een in-memory database:
 	// new DriverManagerDataSource("jdbc:hsqldb:mem:mijndb", "sa", "")
 	}

@@ -10,6 +10,6 @@ import org.springframework.jdbc.datasource.lookup.JndiDataSourceLookup;
 public class CreateDataSourceBean {
 	@Bean
 	DataSource dataSource() {
-	return new JndiDataSourceLookup().getDataSource("jdbc/mijndb");
+	return new JndiDataSourceLookup().getDataSource("jdbc/sportsdata");
 	}
 }

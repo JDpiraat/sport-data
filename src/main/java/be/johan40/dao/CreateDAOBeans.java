@@ -11,6 +11,9 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
+import be.johan40.entities.Sportsman;
+import be.johan40.valueobjects.SportsSession;
+
 @Configuration
 @ComponentScan(basePackageClasses = CreateDAOBeans.class)
 @EnableJpaRepositories(basePackageClasses = { CreateDAOBeans.class })
@@ -24,13 +27,17 @@ public class CreateDAOBeans {
 	LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
 		factory.setDataSource(dataSource);
-		// factory.setPackagesToScan(EigenEntity.class.getPackage().getName(),
-		// EigenValueObject.class.getPackage().getName());
+		factory.setPackagesToScan(Sportsman.class.getPackage().getName(),
+				SportsSession.class.getPackage().getName());
 		HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
 		adapter.setShowSql(true);
 		factory.setJpaVendorAdapter(adapter);
 		factory.getJpaPropertyMap().put("hibernate.format_sql", true);
 		factory.getJpaPropertyMap().put("hibernate.use_sql_comments", true);
+		/* !!!***!!! creating database !!!***!!!
+		factory.getJpaPropertyMap().put(
+				"javax.persistence.schema-generation.database.action", "create");
+		*/
 		return factory;
 	}
 

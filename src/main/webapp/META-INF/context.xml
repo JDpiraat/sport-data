@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context path='/mijndb'>
-<Resource name='jdbc/mijndb'
+<Context path='/sportsdata'>
+<Resource name='jdbc/sportsdata'
 type='javax.sql.DataSource' driverClassName='com.mysql.jdbc.Driver'
-url='jdbc:mysql://localhost/mijndb'
-username='root' password='vdab'
+url='jdbc:mysql://localhost/sportsdata'
+username='root' password='v1d2_a3B+*f1'
 factory='org.apache.tomcat.jdbc.pool.DataSourceFactory'
 validationInterval='60000' validationQuery='select 1' testOnBorrow='true' />
 </Context>

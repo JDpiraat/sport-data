@@ -1,8 +1,8 @@
 package be.johan40.entities;
 
 import java.io.Serializable;
-import java.util.GregorianCalendar;
-import java.util.List;
+import java.util.Calendar;
+import java.util.Set;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
@@ -12,10 +12,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import be.johan40.valueobjects.LengthInMeters;
 import be.johan40.valueobjects.MaxHeartbeats;
 import be.johan40.valueobjects.SportsSession;
+import be.johan40.valueobjects.SportsmanTrack;
 import be.johan40.valueobjects.WeightInKg;
 
 @Entity
@@ -29,22 +32,29 @@ public class Sportsman implements Serializable {
 	private long id;
 	private String firstName;
 	private String lastName;
-	private GregorianCalendar birthday;
+	@Temporal(TemporalType.DATE)
+	private Calendar birthday;
 	@ElementCollection
-	@CollectionTable(name = "weight", joinColumns = @JoinColumn(name = "id"))
-	@OrderBy("weightInKg.startDateEndDate.startDate desc")
-	private WeightInKg weightInKg;
+	@CollectionTable(name = "weight", joinColumns = @JoinColumn(name = "sportsmanId"))
+	@OrderBy("startDateEndDate.startDate desc")
+	private Set<WeightInKg> weightInKg;
 	@ElementCollection
-	@CollectionTable(name = "length", joinColumns = @JoinColumn(name = "id"))
-	@OrderBy("lengthInMeters.startDateEndDate.startDate desc")
-	private LengthInMeters lengthInMeters;
+	@CollectionTable(name = "length", joinColumns = @JoinColumn(name = "sportsmanId"))
+	@OrderBy("startDateEndDate.startDate desc")
+	private Set<LengthInMeters> lengthInMeters;
 	@ElementCollection
-	@CollectionTable(name = "maxheartbeats", joinColumns = @JoinColumn(name = "id"))
-	@OrderBy("maxHeartbeats.startDateEndDate.startDate desc")
-	private MaxHeartbeats maxHeartbeats;
+	@CollectionTable(name = "maxheartbeats", joinColumns = @JoinColumn(name = "sportsmanId"))
+	@OrderBy("startDateEndDate.startDate desc")
+	private Set<MaxHeartbeats> maxHeartbeats;
 	private boolean autoMaxHeartbeats;
-	private List<Track> tracks;
-	private List<SportsSession> sportsSessions;
+	@ElementCollection
+	@CollectionTable(name = "sportsmantrack", joinColumns = @JoinColumn(name = "sportsmanId"))
+	@OrderBy("name desc")
+	private Set<SportsmanTrack> tracks;
+	@ElementCollection
+	@CollectionTable(name = "sportssession", joinColumns = @JoinColumn(name = "sportsmanId"))
+	@OrderBy("date desc")
+	private Set<SportsSession> sportsSessions;
 
 }
 
