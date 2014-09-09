@@ -4,8 +4,8 @@
   xsi:schemaLocation='http://java.sun.com/xml/ns/javaee
     http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd'>
   <tlib-version>1.0</tlib-version>	
-  <short-name>vdab</short-name>	
-  <uri>http://vdab.be/tags</uri>	
+  <short-name>j</short-name>	
+  <uri>http://johan40.be/tags</uri>	
   <tag-file>	
     <name>head</name>	
     <path>/WEB-INF/tags/head.tag</path>	

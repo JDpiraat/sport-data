@@ -41,6 +41,7 @@ public class Sportsman implements Serializable {
 	private String firstName;
 	@Column(nullable = false, length = 50)
 	private String lastName;
+	// @Column(nullable = false)
 	@Temporal(TemporalType.DATE)
 	@Past
 	private Calendar birthday;
