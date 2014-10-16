@@ -5,6 +5,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Set;
 
@@ -44,7 +45,7 @@ public class Sportsman implements Serializable {
 	// @Column(nullable = false)
 	@Temporal(TemporalType.DATE)
 	@Past
-	private Calendar birthday;
+	private Date birthday;
 	@ElementCollection
 	@CollectionTable(name = "weight", joinColumns = @JoinColumn(name = "sportsmanId"))
 	@OrderBy("startDateEndDate.startDate desc")
@@ -73,7 +74,7 @@ public class Sportsman implements Serializable {
 	/**
 	 * maxHeartbeats set to default value (220-age), auto updated
 	 */
-	public Sportsman(String firstName, String lastName, Calendar birthday,
+	public Sportsman(String firstName, String lastName, Date birthday,
 			WeightInKg weightInKg, LengthInMeters lengthInMeters) {
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -82,8 +83,8 @@ public class Sportsman implements Serializable {
 		addLengthInMeters(lengthInMeters);
 		addMaxHeartbeats(new MaxHeartbeats(new StartDateEndDate(
 				GregorianCalendar.getInstance()),
-				(short) (220 - (birthday.get(Calendar.YEAR) - GregorianCalendar
-						.getInstance().get(Calendar.YEAR)))));
+				(short) (220 - (birthday.getYear() - (GregorianCalendar //.get(Calendar.YEAR)
+						.getInstance().get(Calendar.YEAR) - 1900)))));
 		autoMaxHeartbeats = true;
 	}
 
@@ -94,7 +95,7 @@ public class Sportsman implements Serializable {
 	 *            anymore and not auto updated)
 	 * 
 	 */
-	public Sportsman(String firstName, String lastName, Calendar birthday,
+	public Sportsman(String firstName, String lastName, Date birthday,
 			WeightInKg weightInKg, LengthInMeters lengthInMeters,
 			short maxHeartbeats) {
 		this.firstName = firstName;
@@ -123,11 +124,11 @@ public class Sportsman implements Serializable {
 		this.lastName = lastName;
 	}
 
-	public Calendar getBirthday() {
+	public Date getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(Calendar birthday) {
+	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
 

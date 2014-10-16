@@ -38,7 +38,7 @@ public class Track implements Serializable {
 	@Column(length = 20)
 	private Status status;	
 
-	protected Track() {
+	public Track() {
 	}
 
 	// TODO te bekijken ...

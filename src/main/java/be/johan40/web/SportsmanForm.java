@@ -1,11 +1,11 @@
 package be.johan40.web;
 
-import java.util.Calendar;
+import java.util.Date;
 
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.Past;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -15,12 +15,15 @@ class SportsmanForm {
 	private String firstname;
 	@NotBlank
 	private String lastname;
-	@NotBlank
-	@Past
-	private Calendar birthday;
-	@NotBlank
-	private short weightinkg;
-	@NotBlank
+	// @NotNull
+	// @Past
+	private Date birthday;
+	@NotNull
+	@Max(300)
+	@Min(0)
+	@Digits(integer = 3, fraction = 1)
+	private double weightinkg;
+	@NotNull
 	@Max(3)
 	@Min(0)
 	@Digits(integer = 1, fraction = 2)
@@ -42,19 +45,19 @@ class SportsmanForm {
 		this.lastname = lastname;
 	}
 
-	public Calendar getBirthday() {
+	public Date getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(Calendar birthday) {
+	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
 
-	public short getWeightinkg() {
+	public double getWeightinkg() {
 		return weightinkg;
 	}
 
-	public void setWeightinkg(short weightinkg) {
+	public void setWeightinkg(double weightinkg) {
 		this.weightinkg = weightinkg;
 	}
 

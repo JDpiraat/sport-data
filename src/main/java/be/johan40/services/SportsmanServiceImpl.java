@@ -8,7 +8,7 @@ import be.johan40.dao.SportsmanDAO;
 import be.johan40.entities.Sportsman;
 
 @Service
-@Transactional
+@Transactional(readOnly = true)
 public class SportsmanServiceImpl implements SportsmanService {
 
 	private final SportsmanDAO sportsmanDAO;
@@ -19,6 +19,7 @@ public class SportsmanServiceImpl implements SportsmanService {
 	}
 
 	@Override
+	@Transactional(readOnly = false)
 	public void create(Sportsman sportsman) {
 		sportsmanDAO.save(sportsman);
 	}
@@ -26,6 +27,26 @@ public class SportsmanServiceImpl implements SportsmanService {
 	@Override
 	public Sportsman read(Long id) {
 		return sportsmanDAO.findOne(id);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public void update(Sportsman sportsman) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public void delete(long id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Iterable<Sportsman> findAll() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
