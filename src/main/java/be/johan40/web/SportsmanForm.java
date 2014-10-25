@@ -28,6 +28,10 @@ class SportsmanForm {
 	@Min(0)
 	@Digits(integer = 1, fraction = 2)
 	private double lengthinmeters;
+//	@Max(300)
+//	@Min(0)
+//	@Digits(integer = 1, fraction = 0)
+//	private short maxHearbeats;
 
 	public String getFirstname() {
 		return firstname;
@@ -69,4 +73,11 @@ class SportsmanForm {
 		this.lengthinmeters = lengthinmeters;
 	}
 
+//	public short getMaxHearbeats() {
+//		return maxHearbeats;
+//	}
+//
+//	public void setMaxHearbeats(short maxHearbeats) {
+//		this.maxHearbeats = maxHearbeats;
+//	}
 }

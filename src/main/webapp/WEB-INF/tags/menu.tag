@@ -3,7 +3,7 @@
 <nav>
 	<ul>
 		<li><a href="<c:url value='/'/>">Home</a></li>
-		<li><a href="<c:url value='sportsmen'/>">sportsmen</a></li>
+		<li><a href="<c:url value='/sportsmen'/>">sportsmen</a></li>
 		<li><a href="<c:url value='/sportsmen/new'/>">new sportsman</a></li>
 		<li><a href="<c:url value='/tracks'/>">tracks</a></li>
 		<li><a href="<c:url value='/tracks/new'/>">new track</a></li>

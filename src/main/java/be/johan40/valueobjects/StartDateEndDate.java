@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 @Embeddable
 public class StartDateEndDate implements Serializable {
@@ -19,15 +20,18 @@ public class StartDateEndDate implements Serializable {
 	@Column(nullable = false)
 	private Calendar startDate;
 	@Temporal(TemporalType.TIMESTAMP)
-	private Calendar endDate;
-	private boolean current;
+	private Calendar endDate;	
 
 	protected StartDateEndDate() {
 	}
 
+	/**
+	 * creates the current timeslice until endDate is set
+	 * 
+	 * @param startDate 
+	 */
 	public StartDateEndDate(Calendar startDate) {
-		this.startDate = startDate;
-		current = true;
+		this.startDate = startDate;		
 	}
 
 	public Calendar getStartDate() {
@@ -42,17 +46,23 @@ public class StartDateEndDate implements Serializable {
 		return endDate;
 	}
 
+	/**
+	 * makes this timeslice not the current one, if endDate is set 
+	 * you should create a new timeslice to have a current timeslice
+	 * 
+	 * @param endDate
+	 */
 	public void setEndDate(Calendar endDate) {
 		this.endDate = endDate;
-		current = false;
-	}
+	}	
 
+	/**
+	 * 
+	 * @return true if endDate is null (then this is the current timeslice)
+	 */
+	@Transient
 	public boolean isCurrent() {
-		return current;
-	}
-
-	protected void setCurrent(boolean current) {
-		this.current = current;
+		return endDate == null;
 	}
 
 	@Override
@@ -95,7 +105,7 @@ public class StartDateEndDate implements Serializable {
 				.append(dateFormatDateTime.format(startDate))
 				.append(", endDate=")
 				.append(dateFormatDateTime.format(endDate))
-				.append(", current=").append(current).append("]");
+				.append("]");
 		return builder.toString();
 	}
 

@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CollectionTable;
@@ -49,24 +50,24 @@ public class Sportsman implements Serializable {
 	@ElementCollection
 	@CollectionTable(name = "weight", joinColumns = @JoinColumn(name = "sportsmanId"))
 	@OrderBy("startDateEndDate.startDate desc")
-	private Set<WeightInKg> weightInKg;
+	private Set<WeightInKg> weightInKg = new HashSet<>();
 	@ElementCollection
 	@CollectionTable(name = "length", joinColumns = @JoinColumn(name = "sportsmanId"))
 	@OrderBy("startDateEndDate.startDate desc")
-	private Set<LengthInMeters> lengthInMeters;
+	private Set<LengthInMeters> lengthInMeters = new HashSet<>();;
 	@ElementCollection
 	@CollectionTable(name = "maxheartbeats", joinColumns = @JoinColumn(name = "sportsmanId"))
 	@OrderBy("startDateEndDate.startDate desc")
-	private Set<MaxHeartbeats> maxHeartbeats;
+	private Set<MaxHeartbeats> maxHeartbeats = new HashSet<>();;
 	private boolean autoMaxHeartbeats;
 	@ElementCollection
 	@CollectionTable(name = "sportsmantrack", joinColumns = @JoinColumn(name = "sportsmanId"))
 	@OrderBy("name desc")
-	private Set<SportsmanTrack> sportsmanTracks;
+	private Set<SportsmanTrack> sportsmanTracks = new HashSet<>();;
 	@ElementCollection
 	@CollectionTable(name = "sportssession", joinColumns = @JoinColumn(name = "sportsmanId"))
 	@OrderBy("date desc")
-	private Set<SportsSession> sportsSessions;
+	private Set<SportsSession> sportsSessions = new HashSet<>();;
 
 	protected Sportsman() {
 	}
@@ -83,8 +84,8 @@ public class Sportsman implements Serializable {
 		addLengthInMeters(lengthInMeters);
 		addMaxHeartbeats(new MaxHeartbeats(new StartDateEndDate(
 				GregorianCalendar.getInstance()),
-				(short) (220 - (birthday.getYear() - (GregorianCalendar //.get(Calendar.YEAR)
-						.getInstance().get(Calendar.YEAR) - 1900)))));
+				(short) (220 - ((GregorianCalendar // .get(Calendar.YEAR)
+						.getInstance().get(Calendar.YEAR) - 1900) - birthday.getYear()))));
 		autoMaxHeartbeats = true;
 	}
 

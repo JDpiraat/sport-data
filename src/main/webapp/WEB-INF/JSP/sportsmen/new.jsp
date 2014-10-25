@@ -28,6 +28,9 @@
 <form:label path='weightinkg'>Weight in kg:</form:label>
 <form:input path='weightinkg' required='true'/>
 <form:errors path='weightinkg'/>
+<%-- <form:label path='maxHeartbeats'>Maximum heartbeats a minute (220-age standard):</form:label> --%>
+<%-- <form:input path='maxHeartbeats'/> --%>
+<%-- <form:errors path='maxHeartbeats'/> --%>
 <input type='submit' value='create'>
 </form:form>
 </div>

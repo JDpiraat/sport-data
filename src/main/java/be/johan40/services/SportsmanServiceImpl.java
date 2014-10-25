@@ -1,6 +1,7 @@
 package be.johan40.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,23 +31,21 @@ public class SportsmanServiceImpl implements SportsmanService {
 	}
 
 	@Override
-	@Transactional(readOnly = true)
+	@Transactional(readOnly = false)
 	public void update(Sportsman sportsman) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	@Transactional(readOnly = true)
+	@Transactional(readOnly = false)
 	public void delete(long id) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public Iterable<Sportsman> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+	public Iterable<Sportsman> findAll() {		
+		return sportsmanDAO.findAll(new Sort("lastName", "firstName"));
 	}
-
 }
