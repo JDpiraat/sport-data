@@ -11,7 +11,10 @@
 	<j:menu />
 	<div class="maincontent">
 		<h1>Tracks</h1>
-		
+		<c:forEach var="track" items="${tracks}">
+			<!-- jsp:include is var not ok in included page -->
+			<%@include file="trackAllDetails.jsp"%>
+		</c:forEach>
 	</div>
 </body>
 </html>

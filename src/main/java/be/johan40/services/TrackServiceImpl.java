@@ -1,6 +1,7 @@
 package be.johan40.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,24 +20,24 @@ public class TrackServiceImpl implements TrackService {
 	}
 
 	@Override
+	@Transactional(readOnly = false)
 	public void create(Track track) {
-		// TODO Auto-generated method stub
-		
+		trackDAO.save(track);		
 	}
 
 	@Override
-	public Track read(long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Track read(long id) {		
+		return trackDAO.getOne(id);
 	}
 
 	@Override
+	@Transactional(readOnly = false)
 	public void update(Track track) {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub		
 	}
 
 	@Override
+	@Transactional(readOnly = false)
 	public void delete(long id) {
 		// TODO Auto-generated method stub
 		
@@ -44,8 +45,7 @@ public class TrackServiceImpl implements TrackService {
 
 	@Override
 	public Iterable<Track> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return trackDAO.findAll(new Sort("name"));
 	}
 
 }

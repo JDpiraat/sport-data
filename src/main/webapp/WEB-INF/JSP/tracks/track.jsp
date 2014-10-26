@@ -11,7 +11,9 @@
 	<j:menu />
 	<div class="maincontent">
 		<h1>Track</h1>
-		
+		<jsp:include page="trackAllDetails.jsp">
+			<jsp:param name="singleTrack" value="true"/>
+		</jsp:include>	
 	</div>
 </body>
 </html>

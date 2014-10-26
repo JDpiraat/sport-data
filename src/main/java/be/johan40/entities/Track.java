@@ -43,7 +43,7 @@ public class Track implements Serializable {
 
 	// TODO te bekijken ...
 	public Track(String name, Activity activity, double kilometer,
-			String description, String remark, Status status, Long sportsmanId) {
+			String description, String remark, Status status) {
 		this.name = name;
 		this.activity = activity;
 		this.kilometer = kilometer;
