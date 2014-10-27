@@ -49,7 +49,7 @@ public class TrackController {
 			"activity", "kilometer" })
 	String createNewTrack(@Valid TrackForm trackForm, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 		if (!bindingResult.hasErrors()) {
-		//TODO vast erin nu dat elk nieuw track tot sportsmanId 1 behoort ..., wijzigen naar dege die ingelogd is
+		//TODO trackOwner nog wijzigen naar dege die ingelogd is
 			Track track = new Track(trackForm.getName(), trackForm.getActivity(), trackForm.getKilometer(), 
 					trackForm.getDescription(), trackForm.getRemark(), trackForm.getStatus());
 			trackService.create(track);
