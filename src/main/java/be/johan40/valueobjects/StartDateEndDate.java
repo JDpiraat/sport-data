@@ -3,12 +3,11 @@ package be.johan40.valueobjects;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.time.LocalDate;
+import java.util.Optional;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
 @Embeddable
@@ -16,11 +15,9 @@ public class StartDateEndDate implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Temporal(TemporalType.TIMESTAMP)
 	@Column(nullable = false)
-	private Calendar startDate;
-	@Temporal(TemporalType.TIMESTAMP)
-	private Calendar endDate;	
+	private LocalDate startDate;	
+	private LocalDate endDate;	
 
 	protected StartDateEndDate() {
 	}
@@ -30,20 +27,20 @@ public class StartDateEndDate implements Serializable {
 	 * 
 	 * @param startDate 
 	 */
-	public StartDateEndDate(Calendar startDate) {
+	public StartDateEndDate(LocalDate startDate) {
 		this.startDate = startDate;		
 	}
 
-	public Calendar getStartDate() {
+	public LocalDate getStartDate() {
 		return startDate;
 	}
 
-	protected void setStartDate(Calendar startDate) {
+	protected void setStartDate(LocalDate startDate) {
 		this.startDate = startDate;
 	}
 
-	public Calendar getEndDate() {
-		return endDate;
+	public Optional<LocalDate> getEndDate() {
+		return Optional.of(endDate);
 	}
 
 	/**
@@ -52,7 +49,7 @@ public class StartDateEndDate implements Serializable {
 	 * 
 	 * @param endDate
 	 */
-	public void setEndDate(Calendar endDate) {
+	public void setEndDate(LocalDate endDate) {
 		this.endDate = endDate;
 	}	
 

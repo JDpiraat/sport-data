@@ -1,6 +1,6 @@
 package be.johan40.web;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
@@ -17,7 +17,7 @@ class SportsmanForm {
 	private String lastname;
 	// @NotNull
 	// @Past
-	private Date birthday;
+	private LocalDate birthday;
 	@NotNull
 	@Max(300)
 	@Min(0)
@@ -49,11 +49,11 @@ class SportsmanForm {
 		this.lastname = lastname;
 	}
 
-	public Date getBirthday() {
+	public LocalDate getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(Date birthday) {
+	public void setBirthday(LocalDate birthday) {
 		this.birthday = birthday;
 	}
 

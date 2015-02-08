@@ -1,17 +1,16 @@
 package be.johan40.valueobjects;
 
 import java.io.Serializable;
-import java.sql.Time;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.Optional;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import be.johan40.entities.Track;
 
@@ -20,31 +19,30 @@ public class SportsSession implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Temporal(TemporalType.TIMESTAMP)
 	@Column(nullable = false)
-	private Calendar date;
+	private LocalDate date;
 	@Column(nullable = false)
-	private Time time;
+	private LocalTime time;
 	private short heartbeatsPerMinute;
 	private short maxHeartbeatsPerMinute;
 	private short kilocalories;
 	private String remark;
 	@ManyToOne
-	@JoinColumn(name = "trackId")	
+	@JoinColumn(name = "trackId")
 	private Track track;
 
 	protected SportsSession() {
 	}
 
-	public SportsSession(Calendar date, Time time, Track track) {
+	public SportsSession(LocalDate date, LocalTime time, Track track) {
 		this.date = date;
 		this.time = time;
 		this.track = track;
 	}
 
-	public SportsSession(Calendar date, Time time, short heartbeatsPerMinute,
-			short maxHeartbeatsPerMinute, short kilocalories, String remark,
-			Track track) {
+	public SportsSession(LocalDate date, LocalTime time,
+			short heartbeatsPerMinute, short maxHeartbeatsPerMinute,
+			short kilocalories, String remark, Track track) {
 		this.date = date;
 		this.time = time;
 		this.heartbeatsPerMinute = heartbeatsPerMinute;
@@ -54,48 +52,48 @@ public class SportsSession implements Serializable {
 		this.track = track;
 	}
 
-	public Calendar getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
-	protected void setDate(Calendar date) {
+	protected void setDate(LocalDate date) {
 		this.date = date;
 	}
 
-	public Time getTime() {
+	public LocalTime getTime() {
 		return time;
 	}
 
-	protected void setTime(Time time) {
+	protected void setTime(LocalTime time) {
 		this.time = time;
 	}
 
-	public short getHeartbeatsPerMinute() {
-		return heartbeatsPerMinute;
+	public Optional<Short> getHeartbeatsPerMinute() {
+		return Optional.of(heartbeatsPerMinute);
 	}
 
 	public void setHeartbeatsPerMinute(short heartbeatsPerMinute) {
 		this.heartbeatsPerMinute = heartbeatsPerMinute;
 	}
 
-	public short getMaxHeartbeatsPerMinute() {
-		return maxHeartbeatsPerMinute;
+	public Optional<Short> getMaxHeartbeatsPerMinute() {
+		return Optional.of(maxHeartbeatsPerMinute);
 	}
 
 	public void setMaxHeartbeatsPerMinute(short maxHeartbeatsPerMinute) {
 		this.maxHeartbeatsPerMinute = maxHeartbeatsPerMinute;
 	}
 
-	public short getKilocalories() {
-		return kilocalories;
+	public Optional<Short> getKilocalories() {
+		return Optional.of(kilocalories);
 	}
 
 	public void setKilocalories(short kilocalories) {
 		this.kilocalories = kilocalories;
 	}
 
-	public String getRemark() {
-		return remark;
+	public Optional<String> getRemark() {
+		return Optional.of(remark);
 	}
 
 	public void setRemark(String remark) {

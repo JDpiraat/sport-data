@@ -26,6 +26,7 @@ public class SportsmanTrack implements Serializable {
 		trackOwner = true;
 	}
 
+	// TODO remove this method: a new track is created by his trackowner so SportsmanTrack(Track track) suffice.
 	private SportsmanTrack(Track track, boolean trackOwner) {
 		this.track = track;
 		this.trackOwner = trackOwner;

@@ -3,11 +3,12 @@ package be.johan40.entities;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import javax.persistence.CollectionTable;
@@ -22,6 +23,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Past;
+
+import org.springframework.orm.hibernate3.LocalDataSourceConnectionProvider;
 
 import be.johan40.valueobjects.LengthInMeters;
 import be.johan40.valueobjects.MaxHeartbeats;
@@ -43,10 +46,9 @@ public class Sportsman implements Serializable {
 	private String firstName;
 	@Column(nullable = false, length = 50)
 	private String lastName;
-	// @Column(nullable = false)
-	@Temporal(TemporalType.DATE)
+	@Column(nullable = false)	
 	@Past
-	private Date birthday;
+	private LocalDate birthday;
 	@ElementCollection
 	@CollectionTable(name = "weight", joinColumns = @JoinColumn(name = "sportsmanId"))
 	@OrderBy("startDateEndDate.startDate desc")
@@ -75,17 +77,17 @@ public class Sportsman implements Serializable {
 	/**
 	 * maxHeartbeats set to default value (220-age), auto updated
 	 */
-	public Sportsman(String firstName, String lastName, Date birthday,
+	public Sportsman(String firstName, String lastName, LocalDate birthday,
 			WeightInKg weightInKg, LengthInMeters lengthInMeters) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.birthday = birthday;
 		addWeightInKg(weightInKg);
 		addLengthInMeters(lengthInMeters);
+		LocalDate toDay = LocalDate.now();
 		addMaxHeartbeats(new MaxHeartbeats(new StartDateEndDate(
-				GregorianCalendar.getInstance()),
-				(short) (220 - ((GregorianCalendar // .get(Calendar.YEAR)
-						.getInstance().get(Calendar.YEAR) - 1900) - birthday.getYear()))));
+				toDay),
+				(short) (220 - (toDay.getYear() - 1900) - birthday.getYear())));
 		autoMaxHeartbeats = true;
 	}
 
@@ -96,7 +98,7 @@ public class Sportsman implements Serializable {
 	 *            anymore and not auto updated)
 	 * 
 	 */
-	public Sportsman(String firstName, String lastName, Date birthday,
+	public Sportsman(String firstName, String lastName, LocalDate birthday,
 			WeightInKg weightInKg, LengthInMeters lengthInMeters,
 			short maxHeartbeats) {
 		this.firstName = firstName;
@@ -105,7 +107,7 @@ public class Sportsman implements Serializable {
 		addWeightInKg(weightInKg);
 		addLengthInMeters(lengthInMeters);
 		addMaxHeartbeats(new MaxHeartbeats(new StartDateEndDate(
-				GregorianCalendar.getInstance()), maxHeartbeats));
+				LocalDate.now()), maxHeartbeats));
 		autoMaxHeartbeats = false;
 	}
 
@@ -125,11 +127,11 @@ public class Sportsman implements Serializable {
 		this.lastName = lastName;
 	}
 
-	public Date getBirthday() {
+	public LocalDate getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(Date birthday) {
+	public void setBirthday(LocalDate birthday) {
 		this.birthday = birthday;
 	}
 
@@ -177,8 +179,8 @@ public class Sportsman implements Serializable {
 		this.autoMaxHeartbeats = autoMaxHeartbeats;
 	}
 
-	public Set<SportsmanTrack> getSportsmanTracks() {
-		return Collections.unmodifiableSet(sportsmanTracks);
+	public Optional<Set<SportsmanTrack>> getSportsmanTracks() {
+		return Optional.of(Collections.unmodifiableSet(sportsmanTracks));
 	}
 
 	protected void setSportsmanTracks(Set<SportsmanTrack> sportsmanTracks) {
@@ -189,8 +191,8 @@ public class Sportsman implements Serializable {
 		sportsmanTracks.add(sportsmanTrack);
 	}
 
-	public Set<SportsSession> getSportsSessions() {
-		return Collections.unmodifiableSet(sportsSessions);
+	public Optional<Set<SportsSession>> getSportsSessions() {
+		return Optional.of(Collections.unmodifiableSet(sportsSessions));
 	}
 
 	protected void setSportsSessions(Set<SportsSession> sportsSessions) {

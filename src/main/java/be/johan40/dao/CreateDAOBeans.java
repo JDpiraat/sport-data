@@ -11,6 +11,7 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
+import be.johan40.dao.util.LocalDateToDateConverter;
 import be.johan40.entities.Sportsman;
 import be.johan40.valueobjects.SportsSession;
 
@@ -28,7 +29,8 @@ public class CreateDAOBeans {
 		LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
 		factory.setDataSource(dataSource);
 		factory.setPackagesToScan(Sportsman.class.getPackage().getName(),
-				SportsSession.class.getPackage().getName());
+				SportsSession.class.getPackage().getName(),
+				LocalDateToDateConverter.class.getPackage().getName());
 		HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
 		adapter.setShowSql(true);
 		factory.setJpaVendorAdapter(adapter);

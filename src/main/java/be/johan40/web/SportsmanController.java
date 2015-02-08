@@ -1,5 +1,6 @@
 package be.johan40.web;
 
+import java.time.LocalDate;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Set;
@@ -59,7 +60,7 @@ public class SportsmanController {
 			"lastname", "birthday" })
 	ModelAndView createNewSportsman(@Valid SportsmanForm sportsmanForm, BindingResult bindingResult) {
 		if(!bindingResult.hasErrors()){
-		StartDateEndDate startDateEndDate = new StartDateEndDate(GregorianCalendar.getInstance());
+		StartDateEndDate startDateEndDate = new StartDateEndDate(LocalDate.now());
 		LengthInMeters length = new LengthInMeters(startDateEndDate, sportsmanForm.getLengthinmeters());	
 		WeightInKg weight = new WeightInKg(startDateEndDate, sportsmanForm.getWeightinkg());
 		Sportsman sportsman = new Sportsman(sportsmanForm.getFirstname(), sportsmanForm.getLastname(), sportsmanForm.getBirthday(), weight, length);
