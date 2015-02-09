@@ -7,6 +7,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Optional;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
@@ -15,6 +17,7 @@ import javax.persistence.ManyToOne;
 import be.johan40.entities.Track;
 
 @Embeddable
+@Access(AccessType.FIELD)
 public class SportsSession implements Serializable {
 
 	private static final long serialVersionUID = 1L;

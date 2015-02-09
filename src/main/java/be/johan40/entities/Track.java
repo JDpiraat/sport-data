@@ -1,12 +1,11 @@
 package be.johan40.entities;
 
 import java.io.Serializable;
-import java.util.Collections;
-import java.util.Set;
+import java.util.Optional;
 
-import javax.persistence.CollectionTable;
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -16,7 +15,6 @@ import javax.persistence.Table;
 
 import be.johan40.enums.Activity;
 import be.johan40.enums.Status;
-import be.johan40.valueobjects.SportsmanTrack;
 
 @Entity
 @Table(name = "track")
@@ -33,15 +31,25 @@ public class Track implements Serializable {
 	private Activity activity;
 	private double kilometer;
 	private String description;
+	@Access(AccessType.FIELD)
 	private String remark;
 	@Enumerated(EnumType.STRING)
 	@Column(length = 20)
-	private Status status;	
+	private Status status;
 
 	public Track() {
 	}
-
-	// TODO te bekijken ...
+	
+	//TODO builder pattern(?)
+	public Track(String name, Activity activity, double kilometer,
+			String description, Status status) {
+		this.name = name;
+		this.activity = activity;
+		this.kilometer = kilometer;
+		this.description = description;		
+		this.status = status;
+	}
+	
 	public Track(String name, Activity activity, double kilometer,
 			String description, String remark, Status status) {
 		this.name = name;
@@ -84,8 +92,8 @@ public class Track implements Serializable {
 		this.description = description;
 	}
 
-	public String getRemark() {
-		return remark;
+	public Optional<String> getRemark() {
+		return Optional.of(remark);
 	}
 
 	public void setRemark(String remark) {
@@ -99,7 +107,7 @@ public class Track implements Serializable {
 	public void setStatus(Status status) {
 		this.status = status;
 	}
-	
+
 	public long getId() {
 		return id;
 	}

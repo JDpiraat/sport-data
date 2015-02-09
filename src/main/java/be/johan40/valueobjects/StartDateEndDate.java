@@ -6,6 +6,8 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Optional;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Transient;
@@ -17,6 +19,7 @@ public class StartDateEndDate implements Serializable {
 
 	@Column(nullable = false)
 	private LocalDate startDate;	
+	@Access(AccessType.FIELD)
 	private LocalDate endDate;	
 
 	protected StartDateEndDate() {

@@ -4,13 +4,13 @@ import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Calendar;
 import java.util.Collections;
-import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -20,11 +20,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.Past;
-
-import org.springframework.orm.hibernate3.LocalDataSourceConnectionProvider;
 
 import be.johan40.valueobjects.LengthInMeters;
 import be.johan40.valueobjects.MaxHeartbeats;
@@ -46,7 +42,7 @@ public class Sportsman implements Serializable {
 	private String firstName;
 	@Column(nullable = false, length = 50)
 	private String lastName;
-	@Column(nullable = false)	
+	@Column(nullable = false)
 	@Past
 	private LocalDate birthday;
 	@ElementCollection
@@ -64,12 +60,14 @@ public class Sportsman implements Serializable {
 	private boolean autoMaxHeartbeats;
 	@ElementCollection
 	@CollectionTable(name = "sportsmantrack", joinColumns = @JoinColumn(name = "sportsmanId"))
-	@OrderBy("name desc")
+	@OrderBy("track.name desc")
+	@Access(AccessType.FIELD)
 	private Set<SportsmanTrack> sportsmanTracks = new HashSet<>();;
 	@ElementCollection
 	@CollectionTable(name = "sportssession", joinColumns = @JoinColumn(name = "sportsmanId"))
 	@OrderBy("date desc")
-	private Set<SportsSession> sportsSessions = new HashSet<>();;
+	@Access(AccessType.FIELD)
+	private Set<SportsSession> sportsSessions = new HashSet<>();
 
 	protected Sportsman() {
 	}
@@ -85,8 +83,7 @@ public class Sportsman implements Serializable {
 		addWeightInKg(weightInKg);
 		addLengthInMeters(lengthInMeters);
 		LocalDate toDay = LocalDate.now();
-		addMaxHeartbeats(new MaxHeartbeats(new StartDateEndDate(
-				toDay),
+		addMaxHeartbeats(new MaxHeartbeats(new StartDateEndDate(toDay),
 				(short) (220 - (toDay.getYear() - 1900) - birthday.getYear())));
 		autoMaxHeartbeats = true;
 	}
@@ -106,8 +103,8 @@ public class Sportsman implements Serializable {
 		this.birthday = birthday;
 		addWeightInKg(weightInKg);
 		addLengthInMeters(lengthInMeters);
-		addMaxHeartbeats(new MaxHeartbeats(new StartDateEndDate(
-				LocalDate.now()), maxHeartbeats));
+		addMaxHeartbeats(new MaxHeartbeats(
+				new StartDateEndDate(LocalDate.now()), maxHeartbeats));
 		autoMaxHeartbeats = false;
 	}
 

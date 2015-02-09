@@ -1,7 +1,6 @@
 package be.johan40.web;
 
 import java.time.LocalDate;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Set;
 
