@@ -65,14 +65,18 @@ public class SportsmanController {
 		StartDateEndDate startDateEndDate = new StartDateEndDate(LocalDate.now());
 		LengthInMeters length = new LengthInMeters(startDateEndDate, sportsmanForm.getLengthinmeters());	
 		WeightInKg weight = new WeightInKg(startDateEndDate, sportsmanForm.getWeightinkg());
+		//if (!sportsmanForm.getMaxHearbeats().isPresent()){
 		Sportsman sportsman = new Sportsman(sportsmanForm.getFirstname(), 
 				sportsmanForm.getLastname(), 
-				sportsmanForm.getBirthday(), //,(new java.sql.Date(sportsmanForm.getBirthday().getTime())).toLocalDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+				sportsmanForm.getBirthday(), 
 				weight, length);
 		sportsmanService.create(sportsman);
 		return new ModelAndView(SPORTSMAN_VIEW, "sportsman", sportsman);
 		} else {
 			return new ModelAndView(NEW_SPORTSMAN_VIEW);
 		}
+//		} else {
+//			
+//		}
 	}
 }

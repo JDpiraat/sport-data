@@ -19,9 +19,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
-import javax.validation.constraints.Past;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 import be.johan40.valueobjects.LengthInMeters;
 import be.johan40.valueobjects.MaxHeartbeats;
@@ -42,7 +39,7 @@ public class Sportsman implements Serializable {
 	@Column(nullable = false, length = 50)
 	private String lastName;
 	@Column(nullable = false)
-	// @Past	// doesn't function for Localdate (?)
+	// @Past // dd. 14/02/2015: doesn't function for Localdate (?)
 	private LocalDate birthday;
 	@ElementCollection
 	@CollectionTable(name = "weight", joinColumns = @JoinColumn(name = "sportsmanId"))
@@ -57,20 +54,8 @@ public class Sportsman implements Serializable {
 	@OrderBy("startDateEndDate.startDate desc")
 	private Set<MaxHeartbeats> maxHeartbeats = new HashSet<>();;
 	private boolean autoMaxHeartbeats;
-	// @ElementCollection
-	// @CollectionTable(name = "sportsmantrack", joinColumns = @JoinColumn(name
-	// = "sportsmanId"))
-	// @OrderBy("track.name desc")
-	// @Access(AccessType.FIELD)
-	@OneToMany(mappedBy = "sportsman")	
+	@OneToMany(mappedBy = "sportsman")
 	private Set<SportsmanTrack> sportsmanTracks = new HashSet<>();
-
-	// @ElementCollection
-	// @CollectionTable(name = "sportssession", joinColumns = @JoinColumn(name =
-	// "sportsmanId"))
-	// @OrderBy("date desc")
-	// @Access(AccessType.FIELD)
-	// private Set<SportsSession> sportsSessions = new HashSet<>();
 
 	protected Sportsman() {
 	}
@@ -190,18 +175,6 @@ public class Sportsman implements Serializable {
 	public void addSportsmanTrack(SportsmanTrack sportsmanTrack) {
 		sportsmanTracks.add(sportsmanTrack);
 	}
-
-	// public Optional<Set<SportsSession>> getSportsSessions() {
-	// return Optional.of(Collections.unmodifiableSet(sportsSessions));
-	// }
-	//
-	// protected void setSportsSessions(Set<SportsSession> sportsSessions) {
-	// this.sportsSessions = sportsSessions;
-	// }
-	//
-	// public void addSportsSession(SportsSession sportsSession) {
-	// sportsSessions.add(sportsSession);
-	// }
 
 	public long getId() {
 		return id;

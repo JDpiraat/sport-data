@@ -1,12 +1,12 @@
 package be.johan40.web;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -17,7 +17,7 @@ class SportsmanForm {
 	private String firstname;
 	@NotBlank
 	private String lastname;
-	@NotNull	
+	@NotNull
 	@DateTimeFormat(pattern = "yyyy-M-dd")
 	private LocalDate birthday;
 	@NotNull
@@ -30,11 +30,10 @@ class SportsmanForm {
 	@Min(0)
 	@Digits(integer = 1, fraction = 2)
 	private double lengthinmeters;
-
-	// @Max(300)
-	// @Min(0)
-	// @Digits(integer = 1, fraction = 0)
-	// private short maxHearbeats;
+	@Max(300)
+	@Min(0)
+	@Digits(integer = 1, fraction = 0)
+	private short maxHearbeats;
 
 	public String getFirstname() {
 		return firstname;
@@ -76,11 +75,11 @@ class SportsmanForm {
 		this.lengthinmeters = lengthinmeters;
 	}
 
-	// public short getMaxHearbeats() {
-	// return maxHearbeats;
-	// }
-	//
-	// public void setMaxHearbeats(short maxHearbeats) {
-	// this.maxHearbeats = maxHearbeats;
-	// }
+	 public Optional<Short> getMaxHearbeats() {
+	 return Optional.of(maxHearbeats);
+	 }
+	
+	 public void setMaxHearbeats(short maxHearbeats) {
+	 this.maxHearbeats = maxHearbeats;
+	 }
 }

@@ -29,17 +29,12 @@ public class SportsSession implements Serializable {
 	private short kilocalories;
 	private String remark;
 
-	// @ManyToOne
-	// @JoinColumn(name = "trackId")
-	// private Track track;
-
 	protected SportsSession() {
 	}
 
 	public SportsSession(LocalDate date, LocalTime time, Track track) {
 		this.date = date;
-		this.time = time;
-		// this.track = track;
+		this.time = time;		
 	}
 
 	public SportsSession(LocalDate date, LocalTime time,
@@ -50,8 +45,7 @@ public class SportsSession implements Serializable {
 		this.heartbeatsPerMinute = heartbeatsPerMinute;
 		this.maxHeartbeatsPerMinute = maxHeartbeatsPerMinute;
 		this.kilocalories = kilocalories;
-		this.remark = remark;
-		// this.track = track;
+		this.remark = remark;		
 	}
 
 	public LocalDate getDate() {
@@ -101,22 +95,13 @@ public class SportsSession implements Serializable {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-
-	// public Track getTrack() {
-	// return track;
-	// }
-	//
-	// protected void setTrack(Track track) {
-	// this.track = track;
-	// }
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
-		result = prime * result + ((time == null) ? 0 : time.hashCode());
-		// result = prime * result + ((track == null) ? 0 : track.hashCode());
+		result = prime * result + ((time == null) ? 0 : time.hashCode());		
 		return result;
 	}
 
@@ -142,14 +127,7 @@ public class SportsSession implements Serializable {
 			}
 		} else if (!time.equals(other.time)) {
 			return false;
-		}
-		// if (track == null) {
-		// if (other.track != null) {
-		// return false;
-		// }
-		// } else if (!track.equals(other.track)) {
-		// return false;
-		// }
+		}		
 		return true;
 	}
 
@@ -164,9 +142,7 @@ public class SportsSession implements Serializable {
 				.append(", heartbeatsPerMinute=").append(heartbeatsPerMinute)
 				.append(", maxHeartbeatsPerMinute=")
 				.append(maxHeartbeatsPerMinute).append(", kilocalories=")
-				.append(kilocalories).append(", remark=").append(remark)
-		// .append(", track=").append(track).append("]")
-		;
+				.append(kilocalories).append(", remark=").append(remark);
 		return builder.toString();
 	}
 
