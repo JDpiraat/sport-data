@@ -1,6 +1,9 @@
 package be.johan40.web;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.List;
 import java.util.Set;
 
@@ -62,7 +65,10 @@ public class SportsmanController {
 		StartDateEndDate startDateEndDate = new StartDateEndDate(LocalDate.now());
 		LengthInMeters length = new LengthInMeters(startDateEndDate, sportsmanForm.getLengthinmeters());	
 		WeightInKg weight = new WeightInKg(startDateEndDate, sportsmanForm.getWeightinkg());
-		Sportsman sportsman = new Sportsman(sportsmanForm.getFirstname(), sportsmanForm.getLastname(), sportsmanForm.getBirthday(), weight, length);
+		Sportsman sportsman = new Sportsman(sportsmanForm.getFirstname(), 
+				sportsmanForm.getLastname(), 
+				sportsmanForm.getBirthday(), //LocalDate.parse( //  DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+				weight, length);
 		sportsmanService.create(sportsman);
 		return new ModelAndView(SPORTSMAN_VIEW, "sportsman", sportsman);
 		} else {

@@ -1,7 +1,5 @@
 package be.johan40.services;
 
-import java.util.List;
-
 import be.johan40.entities.Sportsman;
 
 public interface SportsmanService {

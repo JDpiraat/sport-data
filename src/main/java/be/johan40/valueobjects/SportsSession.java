@@ -11,8 +11,6 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 import be.johan40.entities.Track;
 
@@ -30,9 +28,10 @@ public class SportsSession implements Serializable {
 	private short maxHeartbeatsPerMinute;
 	private short kilocalories;
 	private String remark;
-	@ManyToOne
-	@JoinColumn(name = "trackId")
-	private Track track;
+
+	// @ManyToOne
+	// @JoinColumn(name = "trackId")
+	// private Track track;
 
 	protected SportsSession() {
 	}
@@ -40,7 +39,7 @@ public class SportsSession implements Serializable {
 	public SportsSession(LocalDate date, LocalTime time, Track track) {
 		this.date = date;
 		this.time = time;
-		this.track = track;
+		// this.track = track;
 	}
 
 	public SportsSession(LocalDate date, LocalTime time,
@@ -52,7 +51,7 @@ public class SportsSession implements Serializable {
 		this.maxHeartbeatsPerMinute = maxHeartbeatsPerMinute;
 		this.kilocalories = kilocalories;
 		this.remark = remark;
-		this.track = track;
+		// this.track = track;
 	}
 
 	public LocalDate getDate() {
@@ -103,13 +102,13 @@ public class SportsSession implements Serializable {
 		this.remark = remark;
 	}
 
-	public Track getTrack() {
-		return track;
-	}
-
-	protected void setTrack(Track track) {
-		this.track = track;
-	}
+	// public Track getTrack() {
+	// return track;
+	// }
+	//
+	// protected void setTrack(Track track) {
+	// this.track = track;
+	// }
 
 	@Override
 	public int hashCode() {
@@ -117,7 +116,7 @@ public class SportsSession implements Serializable {
 		int result = 1;
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
 		result = prime * result + ((time == null) ? 0 : time.hashCode());
-		result = prime * result + ((track == null) ? 0 : track.hashCode());
+		// result = prime * result + ((track == null) ? 0 : track.hashCode());
 		return result;
 	}
 
@@ -144,13 +143,13 @@ public class SportsSession implements Serializable {
 		} else if (!time.equals(other.time)) {
 			return false;
 		}
-		if (track == null) {
-			if (other.track != null) {
-				return false;
-			}
-		} else if (!track.equals(other.track)) {
-			return false;
-		}
+		// if (track == null) {
+		// if (other.track != null) {
+		// return false;
+		// }
+		// } else if (!track.equals(other.track)) {
+		// return false;
+		// }
 		return true;
 	}
 
@@ -166,7 +165,8 @@ public class SportsSession implements Serializable {
 				.append(", maxHeartbeatsPerMinute=")
 				.append(maxHeartbeatsPerMinute).append(", kilocalories=")
 				.append(kilocalories).append(", remark=").append(remark)
-				.append(", track=").append(track).append("]");
+		// .append(", track=").append(track).append("]")
+		;
 		return builder.toString();
 	}
 

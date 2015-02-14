@@ -17,19 +17,19 @@
 			<form:input path='name' autofocus='true' required='true' />
 			<form:errors path='name' />
 			<form:label path='activity'>Activity:</form:label>
-			<form:input path='activity' autofocus='true' required='true' />
+			<form:select path='activity'  items="${activityList}" required='true' />
 			<form:errors path='activity' />
 			<form:label path='kilometer'>Kilometers:</form:label>
-			<form:input path='kilometer' autofocus='true' required='true' />
+			<form:input path='kilometer'  required='true' />
 			<form:errors path='kilometer' />
 			<form:label path='description'>Description:</form:label>
-			<form:input path='description' autofocus='true' required='true' />
+			<form:input path='description'  required='true' />
 			<form:errors path='description' />
 			<form:label path='remark'>Remark:</form:label>
-			<form:input path='remark' autofocus='true' required='true' />
+			<form:input path='remark' />
 			<form:errors path='remark' />
 			<form:label path='status'>Status:</form:label>
-			<form:input path='status' autofocus='true' required='true' />
+			<form:select path='status' items="${statusList}" required='true' />
 			<form:errors path='status' />
 			<input type='submit' value='create'>
 		</form:form>

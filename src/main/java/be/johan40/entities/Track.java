@@ -1,7 +1,9 @@
 package be.johan40.entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
@@ -11,6 +13,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import be.johan40.enums.Activity;
@@ -36,6 +39,9 @@ public class Track implements Serializable {
 	@Enumerated(EnumType.STRING)
 	@Column(length = 20)
 	private Status status;
+	
+	@OneToMany(mappedBy = "track")	
+	private Set<SportsmanTrack> sportsmanTracks = new HashSet<>();
 
 	public Track() {
 	}
@@ -58,6 +64,18 @@ public class Track implements Serializable {
 		this.description = description;
 		this.remark = remark;
 		this.status = status;
+	}
+	/**
+	 * creates copy of track which is owned by sportsman who created the copy
+	 * @param track
+	 */
+	public Track(Track track) {
+		this.name = track.name;
+		this.activity = track.activity;
+		this.kilometer = track.kilometer;
+		this.description = track.description;
+		this.remark = track.remark;
+		this.status = track.status;
 	}
 
 	public String getName() {
@@ -106,6 +124,14 @@ public class Track implements Serializable {
 
 	public void setStatus(Status status) {
 		this.status = status;
+	}	
+
+	public Set<SportsmanTrack> getSportsmanTracks() {
+		return sportsmanTracks;
+	}
+
+	public void setSportsmanTracks(Set<SportsmanTrack> sportsmanTracks) {
+		this.sportsmanTracks = sportsmanTracks;
 	}
 
 	public long getId() {

@@ -9,8 +9,6 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -18,14 +16,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.validation.constraints.Past;
 
 import be.johan40.valueobjects.LengthInMeters;
 import be.johan40.valueobjects.MaxHeartbeats;
-import be.johan40.valueobjects.SportsSession;
-import be.johan40.valueobjects.SportsmanTrack;
 import be.johan40.valueobjects.StartDateEndDate;
 import be.johan40.valueobjects.WeightInKg;
 
@@ -58,16 +55,20 @@ public class Sportsman implements Serializable {
 	@OrderBy("startDateEndDate.startDate desc")
 	private Set<MaxHeartbeats> maxHeartbeats = new HashSet<>();;
 	private boolean autoMaxHeartbeats;
-	@ElementCollection
-	@CollectionTable(name = "sportsmantrack", joinColumns = @JoinColumn(name = "sportsmanId"))
-	@OrderBy("track.name desc")
-	@Access(AccessType.FIELD)
-	private Set<SportsmanTrack> sportsmanTracks = new HashSet<>();;
-	@ElementCollection
-	@CollectionTable(name = "sportssession", joinColumns = @JoinColumn(name = "sportsmanId"))
-	@OrderBy("date desc")
-	@Access(AccessType.FIELD)
-	private Set<SportsSession> sportsSessions = new HashSet<>();
+	// @ElementCollection
+	// @CollectionTable(name = "sportsmantrack", joinColumns = @JoinColumn(name
+	// = "sportsmanId"))
+	// @OrderBy("track.name desc")
+	// @Access(AccessType.FIELD)
+	@OneToMany(mappedBy = "sportsman")	
+	private Set<SportsmanTrack> sportsmanTracks = new HashSet<>();
+
+	// @ElementCollection
+	// @CollectionTable(name = "sportssession", joinColumns = @JoinColumn(name =
+	// "sportsmanId"))
+	// @OrderBy("date desc")
+	// @Access(AccessType.FIELD)
+	// private Set<SportsSession> sportsSessions = new HashSet<>();
 
 	protected Sportsman() {
 	}
@@ -188,17 +189,17 @@ public class Sportsman implements Serializable {
 		sportsmanTracks.add(sportsmanTrack);
 	}
 
-	public Optional<Set<SportsSession>> getSportsSessions() {
-		return Optional.of(Collections.unmodifiableSet(sportsSessions));
-	}
-
-	protected void setSportsSessions(Set<SportsSession> sportsSessions) {
-		this.sportsSessions = sportsSessions;
-	}
-
-	public void addSportsSession(SportsSession sportsSession) {
-		sportsSessions.add(sportsSession);
-	}
+	// public Optional<Set<SportsSession>> getSportsSessions() {
+	// return Optional.of(Collections.unmodifiableSet(sportsSessions));
+	// }
+	//
+	// protected void setSportsSessions(Set<SportsSession> sportsSessions) {
+	// this.sportsSessions = sportsSessions;
+	// }
+	//
+	// public void addSportsSession(SportsSession sportsSession) {
+	// sportsSessions.add(sportsSession);
+	// }
 
 	public long getId() {
 		return id;

@@ -36,7 +36,7 @@ public class CreateDAOBeans {
 		factory.setJpaVendorAdapter(adapter);
 		factory.getJpaPropertyMap().put("hibernate.format_sql", true);
 		factory.getJpaPropertyMap().put("hibernate.use_sql_comments", true);
-		/* !!!***!!! creating database: LEAVE IN COMMENT !!!***!!! 
+		//* !!!***!!! creating database: LEAVE IN COMMENT !!!***!!! 
 		factory.getJpaPropertyMap().put(
 				"javax.persistence.schema-generation.database.action", "create");
 		//*/ 

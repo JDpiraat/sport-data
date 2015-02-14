@@ -8,10 +8,10 @@
 		</non-jta-data-source>
 		<class>be.johan40.entities.Sportsman</class>
 		<class>be.johan40.entities.Track</class>
+		<class>be.johan40.entities.SportsmanTrack</class>
 		<class>be.johan40.valueobjects.LengthInMeters</class>
 		<class>be.johan40.valueobjects.MaxHeartbeats</class>
 		<class>be.johan40.valueobjects.SportsSession</class>
-		<class>be.johan40.valueobjects.SportsmanTrack</class>
 		<class>be.johan40.valueobjects.StartDateEndDate</class>
 		<class>be.johan40.valueobjects.WeightInKg</class>
 		<class>be.johan40.dao.util.LocalDateToDateConverter</class>
