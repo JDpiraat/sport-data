@@ -67,7 +67,7 @@ public class SportsmanController {
 		WeightInKg weight = new WeightInKg(startDateEndDate, sportsmanForm.getWeightinkg());
 		Sportsman sportsman = new Sportsman(sportsmanForm.getFirstname(), 
 				sportsmanForm.getLastname(), 
-				sportsmanForm.getBirthday(), //LocalDate.parse( //  DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+				sportsmanForm.getBirthday(), //,(new java.sql.Date(sportsmanForm.getBirthday().getTime())).toLocalDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd"))
 				weight, length);
 		sportsmanService.create(sportsman);
 		return new ModelAndView(SPORTSMAN_VIEW, "sportsman", sportsman);

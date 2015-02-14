@@ -21,6 +21,8 @@ import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.validation.constraints.Past;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import be.johan40.valueobjects.LengthInMeters;
 import be.johan40.valueobjects.MaxHeartbeats;
 import be.johan40.valueobjects.StartDateEndDate;
@@ -40,7 +42,7 @@ public class Sportsman implements Serializable {
 	@Column(nullable = false, length = 50)
 	private String lastName;
 	@Column(nullable = false)
-	@Past
+	// @Past	// doesn't function for Localdate (?)
 	private LocalDate birthday;
 	@ElementCollection
 	@CollectionTable(name = "weight", joinColumns = @JoinColumn(name = "sportsmanId"))
@@ -85,7 +87,7 @@ public class Sportsman implements Serializable {
 		addLengthInMeters(lengthInMeters);
 		LocalDate toDay = LocalDate.now();
 		addMaxHeartbeats(new MaxHeartbeats(new StartDateEndDate(toDay),
-				(short) (220 - (toDay.getYear() - 1900) - birthday.getYear())));
+				(short) (220 - (toDay.getYear() - birthday.getYear()))));
 		autoMaxHeartbeats = true;
 	}
 
