@@ -1,7 +1,6 @@
 package be.johan40.web;
 
 import java.time.LocalDate;
-import java.util.Optional;
 
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
@@ -11,6 +10,8 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import be.johan40.constraints.PastLocalDate;
+
 class SportsmanForm {
 
 	@NotBlank
@@ -18,6 +19,7 @@ class SportsmanForm {
 	@NotBlank
 	private String lastname;
 	@NotNull
+	@PastLocalDate
 	@DateTimeFormat(pattern = "yyyy-M-dd")
 	private LocalDate birthday;
 	@NotNull
@@ -33,7 +35,7 @@ class SportsmanForm {
 	@Max(300)
 	@Min(0)
 	@Digits(integer = 1, fraction = 0)
-	private short maxHearbeats;
+	private short maxHeartbeats;
 
 	public String getFirstname() {
 		return firstname;
@@ -75,11 +77,16 @@ class SportsmanForm {
 		this.lengthinmeters = lengthinmeters;
 	}
 
-	 public Optional<Short> getMaxHearbeats() {
-	 return Optional.of(maxHearbeats);
-	 }
-	
-	 public void setMaxHearbeats(short maxHearbeats) {
-	 this.maxHearbeats = maxHearbeats;
-	 }
+	// TODO Optional ... here? don't think so ...
+	// public Optional<Short> getMaxHearbeats() {
+	// return Optional.of(maxHearbeats);
+	// }
+
+	public short getMaxHeartbeats() {
+		return maxHeartbeats;
+	}
+
+	public void setMaxHeartbeats(short maxHeartbeats) {
+		this.maxHeartbeats = maxHeartbeats;
+	}
 }

@@ -12,7 +12,8 @@ public class EigenConstraintValidator implements
 
 	@Override
 	public boolean isValid(Integer entity, ConstraintValidatorContext context) {
-		// TODO wat controle
+		// TODO wat controle 
+		// ff checken maar ik dacht dat hier bv null oke is als input (of zelfs moet zijn), daarvoor heb je namelijk de @notNull
 		return true;
 
 	}

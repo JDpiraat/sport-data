@@ -20,6 +20,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
+import be.johan40.constraints.PastLocalDate;
 import be.johan40.valueobjects.LengthInMeters;
 import be.johan40.valueobjects.MaxHeartbeats;
 import be.johan40.valueobjects.StartDateEndDate;
@@ -39,7 +40,8 @@ public class Sportsman implements Serializable {
 	@Column(nullable = false, length = 50)
 	private String lastName;
 	@Column(nullable = false)
-	// @Past // dd. 14/02/2015: doesn't function for Localdate (?)
+	// @Past // dd. 14/02/2015: doesn't function for Localdate
+	@PastLocalDate
 	private LocalDate birthday;
 	@ElementCollection
 	@CollectionTable(name = "weight", joinColumns = @JoinColumn(name = "sportsmanId"))
