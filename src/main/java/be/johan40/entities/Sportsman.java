@@ -40,7 +40,7 @@ public class Sportsman implements Serializable {
 	@Column(nullable = false, length = 50)
 	private String lastName;
 	@Column(nullable = false)
-	// @Past // dd. 14/02/2015: doesn't function for Localdate
+	// @Past X : dd. 14/02/2015: doesn't function for Localdate => own constraint
 	@PastLocalDate
 	private LocalDate birthday;
 	@ElementCollection

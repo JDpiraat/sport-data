@@ -15,22 +15,22 @@
 <form:form action="${url}" commandName='sportsmanForm' method='post'>
 <form:label path='firstname'>First name:</form:label>
 <form:input path='firstname' autofocus='true' required='true'/>
-<form:errors path='firstname'/>
+<form:errors path='firstname' element='div' cssClass='fout'/>
 <form:label path='lastname'>Last name:</form:label>
 <form:input path='lastname' required='true'/>
-<form:errors path='lastname'/>
+<form:errors path='lastname' element='div' cssClass='fout'/>
 <form:label path='birthday'>Birthday:</form:label>
 <form:input type="date" path='birthday' required='true'/>
-<form:errors path='birthday'/>
+<form:errors path='birthday' element='div' cssClass='fout'/>
 <form:label path='lengthinmeters'>Length in meters:</form:label>
 <form:input path='lengthinmeters' required='true'/>
-<form:errors path='lengthinmeters'/>
+<form:errors path='lengthinmeters' element='div' cssClass='fout'/>
 <form:label path='weightinkg'>Weight in kg:</form:label>
 <form:input path='weightinkg' required='true'/>
-<form:errors path='weightinkg'/>
+<form:errors path='weightinkg' element='div' cssClass='fout'/>
 <form:label path='maxHeartbeats'>Maximum heartbeats a minute (220-age standard):</form:label>
 <form:input path='maxHeartbeats' />
-<form:errors path='maxHeartbeats'/>
+<form:errors path='maxHeartbeats' element='div' cssClass='fout'/>
 <input type='submit' value='create'>
 </form:form>
 </div>

@@ -34,7 +34,7 @@ class SportsmanForm {
 	private double lengthinmeters;
 	@Max(300)
 	@Min(0)
-	@Digits(integer = 1, fraction = 0)
+	@Digits(integer = 3, fraction = 0)
 	private short maxHeartbeats;
 
 	public String getFirstname() {
@@ -76,12 +76,7 @@ class SportsmanForm {
 	public void setLengthinmeters(double lengthinmeters) {
 		this.lengthinmeters = lengthinmeters;
 	}
-
-	// TODO Optional ... here? don't think so ...
-	// public Optional<Short> getMaxHearbeats() {
-	// return Optional.of(maxHearbeats);
-	// }
-
+	
 	public short getMaxHeartbeats() {
 		return maxHeartbeats;
 	}

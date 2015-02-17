@@ -1,11 +1,6 @@
 package be.johan40.web;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
-import java.util.List;
-import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -18,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import be.johan40.entities.Sportsman;
-import be.johan40.services.EigenEntityService;
 import be.johan40.services.SportsmanService;
 import be.johan40.valueobjects.LengthInMeters;
 import be.johan40.valueobjects.StartDateEndDate;
@@ -34,22 +28,24 @@ public class SportsmanController {
 	private static final String SESSIONS_VIEW = "sessions/sessions";
 	private static final String SESSION_VIEW = "sessions/session";
 	private static final String NEW_SESSION_VIEW = "sessions/new";
-	
+
 	private final SportsmanService sportsmanService;
-	
+
 	@Autowired
-	SportsmanController(SportsmanService sportsmanService) {		
+	SportsmanController(SportsmanService sportsmanService) {
 		this.sportsmanService = sportsmanService;
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
-	ModelAndView findAll() {		
-		return new ModelAndView(SPORTSMEN_VIEW, "sportsmen", sportsmanService.findAll());		
+	ModelAndView findAll() {
+		return new ModelAndView(SPORTSMEN_VIEW, "sportsmen",
+				sportsmanService.findAll());
 	}
-	
+
 	@RequestMapping(value = "{sportsman}", method = RequestMethod.GET)
-	ModelAndView read(@PathVariable Sportsman sportsman) {		
-		return new ModelAndView(SPORTSMAN_VIEW, "sportsman", sportsmanService.read(sportsman.getId()));		
+	ModelAndView read(@PathVariable Sportsman sportsman) {
+		return new ModelAndView(SPORTSMAN_VIEW, "sportsman",
+				sportsmanService.read(sportsman.getId()));
 	}
 
 	@RequestMapping(value = "new", method = RequestMethod.GET)
@@ -60,23 +56,30 @@ public class SportsmanController {
 
 	@RequestMapping(method = RequestMethod.POST, params = { "firstname",
 			"lastname", "birthday" })
-	ModelAndView createNewSportsman(@Valid SportsmanForm sportsmanForm, BindingResult bindingResult) {
-		if(!bindingResult.hasErrors()){
-		StartDateEndDate startDateEndDate = new StartDateEndDate(LocalDate.now());
-		LengthInMeters length = new LengthInMeters(startDateEndDate, sportsmanForm.getLengthinmeters());	
-		WeightInKg weight = new WeightInKg(startDateEndDate, sportsmanForm.getWeightinkg());
-		//if (!sportsmanForm.getMaxHearbeats().isPresent()){
-		Sportsman sportsman = new Sportsman(sportsmanForm.getFirstname(), 
-				sportsmanForm.getLastname(), 
-				sportsmanForm.getBirthday(), 
-				weight, length);
-		sportsmanService.create(sportsman);
-		return new ModelAndView(SPORTSMAN_VIEW, "sportsman", sportsman);
+	ModelAndView createNewSportsman(@Valid SportsmanForm sportsmanForm,
+			BindingResult bindingResult) {
+		if (!bindingResult.hasErrors()) {
+			StartDateEndDate startDateEndDate = new StartDateEndDate(
+					LocalDate.now());
+			LengthInMeters length = new LengthInMeters(startDateEndDate,
+					sportsmanForm.getLengthinmeters());
+			WeightInKg weight = new WeightInKg(startDateEndDate,
+					sportsmanForm.getWeightinkg());
+			Sportsman sportsman;
+			if (sportsmanForm.getMaxHeartbeats() == 0) {
+				sportsman = new Sportsman(sportsmanForm.getFirstname(),
+						sportsmanForm.getLastname(),
+						sportsmanForm.getBirthday(), weight, length);
+			} else {
+				sportsman = new Sportsman(sportsmanForm.getFirstname(),
+						sportsmanForm.getLastname(),
+						sportsmanForm.getBirthday(), weight, length,
+						sportsmanForm.getMaxHeartbeats());
+			}
+			sportsmanService.create(sportsman);
+			return new ModelAndView(SPORTSMAN_VIEW, "sportsman", sportsman);
 		} else {
 			return new ModelAndView(NEW_SPORTSMAN_VIEW);
 		}
-//		} else {
-//			
-//		}
 	}
 }
