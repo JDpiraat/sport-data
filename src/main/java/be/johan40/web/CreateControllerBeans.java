@@ -53,7 +53,8 @@ public class CreateControllerBeans extends WebMvcConfigurerAdapter {
 	// dus)
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("/info").setViewName("info");
+		registry.addViewController("/info").setViewName("info"); // not needed (yet?)
+		registry.addViewController("/login").setViewName("login");
 	}
 
 	@Bean

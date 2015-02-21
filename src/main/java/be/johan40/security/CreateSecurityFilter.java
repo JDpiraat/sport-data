@@ -28,12 +28,15 @@ public class CreateSecurityFilter extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		//TODO specifieke admin zaken nog te bekijken (sportsmen, track, session verwijderen?)
-		http.formLogin()
+		http.formLogin().loginPage("/login").and().logout().logoutSuccessUrl("/")
 		.and().authorizeRequests()
 		.antMatchers("/tracks/new").hasAuthority(SPORTSMEN)
 		.antMatchers(HttpMethod.POST, "/tracks").hasAuthority(SPORTSMEN) 
 //		.antMatchers(HttpMethod.PUT, "/filialen/*").hasAuthority(SPORTSMEN)
 //		.antMatchers(HttpMethod.DELETE, "/filialen/*").hasAuthority(ADMINISTRATOR)
+		.antMatchers("/", "/login").permitAll()
+		//.antMatchers("/**").authenticated()
+		.and().exceptionHandling().accessDeniedPage("/WEB-INF/JSP/forbidden.jsp")
 		;
 	}
 	@Override
