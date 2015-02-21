@@ -14,23 +14,23 @@
 		<c:url value='/tracks' var='url' />
 		<form:form action="${url}" commandName='trackForm' method='post'>
 			<form:label path='name'>Name:</form:label>
-			<form:input path='name' autofocus='true' required='true' />
 			<form:errors path='name' />
+			<form:input path='name' autofocus='true' required='true' />
 			<form:label path='activity'>Activity:</form:label>
-			<form:select path='activity'  items="${activityList}" required='true' />
 			<form:errors path='activity' />
+			<form:select path='activity'  items="${activityList}" required='true' />
 			<form:label path='kilometer'>Kilometers:</form:label>
-			<form:input path='kilometer'  required='true' />
 			<form:errors path='kilometer' />
+			<form:input path='kilometer'  required='true' />
 			<form:label path='description'>Description:</form:label>
-			<form:input path='description'  required='true' />
 			<form:errors path='description' />
+			<form:input path='description'  required='true' />
 			<form:label path='remark'>Remark:</form:label>
-			<form:input path='remark' />
 			<form:errors path='remark' />
+			<form:input path='remark' />
 			<form:label path='status'>Status:</form:label>
-			<form:select path='status' items="${statusList}" required='true' />
 			<form:errors path='status' />
+			<form:select path='status' items="${statusList}" required='true' />
 			<input type='submit' value='create'>
 		</form:form>
 	</div>
