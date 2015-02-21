@@ -18,7 +18,11 @@
 			<form:input path='name' autofocus='true' required='true' />
 			<form:label path='activity'>Activity:</form:label>
 			<form:errors path='activity' />
-			<form:select path='activity'  items="${activityList}" required='true' />
+			<form:select path='activity'  required='true'>
+				<c:forEach var="activity" items="${activityList}" >
+					<form:option value="${activity}">${activity.toString()}</form:option>
+				</c:forEach>
+			</form:select>
 			<form:label path='kilometer'>Kilometers:</form:label>
 			<form:errors path='kilometer' />
 			<form:input path='kilometer'  required='true' />
@@ -30,7 +34,11 @@
 			<form:input path='remark' />
 			<form:label path='status'>Status:</form:label>
 			<form:errors path='status' />
-			<form:select path='status' items="${statusList}" required='true' />
+			<form:select path='status' required='true'>
+				<c:forEach var="status" items="${statusList}" >
+					<form:option value="${status}">${status.toString()}</form:option>
+				</c:forEach>
+			</form:select>
 			<input type='submit' value='create'>
 		</form:form>
 	</div>

@@ -18,10 +18,12 @@
 </h2>
 <div>
 	<ul>
-		<li>${track.activity}</li>
-		<li>${track.kilometer}</li>		
+		<li>${track.activity.toString()}</li>
+		<li>${track.kilometer} km</li>		
 		<li>${track.description}</li>
-		<li>${track.remark}</li>
-		<li>${track.status}</li>
+		<c:if test="${track.remark.isPresent() && track.remark.get() != ''}">
+			<li>${track.remark.get()}</li>
+		</c:if>
+		<li>${track.status.toString()}</li>
 	</ul>
 </div>
