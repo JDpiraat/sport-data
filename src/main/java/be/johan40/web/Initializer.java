@@ -10,6 +10,7 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 
 import be.johan40.dao.CreateDAOBeans;
 import be.johan40.datasource.CreateDataSourceBean;
+import be.johan40.security.CreateSecurityFilter;
 import be.johan40.services.CreateServiceBeans;
 
 public class Initializer extends
@@ -20,11 +21,11 @@ public class Initializer extends
 		return new Class<?>[] { // TODO
 		CreateDataSourceBean.class, CreateDAOBeans.class,
 				CreateServiceBeans.class,
-		// CreateRestClientBeans.class,
-		// CreateMailBeans.class,
-		// CreateCommonBeans.class,
-		// CreateSecurityFilter.class,
-		// CreateAOPBeans.class
+				// CreateRestClientBeans.class,
+				// CreateMailBeans.class,
+				// CreateCommonBeans.class,
+				CreateSecurityFilter.class,
+				// CreateAOPBeans.class
 		};
 	}
 

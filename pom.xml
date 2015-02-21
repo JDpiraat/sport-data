@@ -74,15 +74,14 @@
 			<artifactId>hibernate-validator</artifactId>
 			<version>[5.1.0, 5.1.99]</version>
 		</dependency>
-		<dependency> <!-- beschermen tegen cross-site scripting (xss) @SafeHtml nog bij velden zetten -->
+		<dependency> <!-- beschermen tegen cross-site scripting (xss) @SafeHtml nog bij velden 
+				zetten -->
 			<groupId>org.jsoup</groupId>
 			<artifactId>jsoup</artifactId>
 			<version>1.7.2</version>
 		</dependency>
-		<!-- <dependency> als je met JDBC ipv JPA-hibernate zou werken ... 
-			<groupId>org.springframework</groupId> 
-			<artifactId>spring-jdbc</artifactId> 
-		</dependency> -->
+		<!-- <dependency> als je met JDBC ipv JPA-hibernate zou werken ... <groupId>org.springframework</groupId> 
+			<artifactId>spring-jdbc</artifactId> </dependency> -->
 		<dependency> <!-- voor integration tests -->
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
@@ -93,7 +92,7 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>[5.1,]</version>
 			<scope>test</scope>
-			</dependency>
+		</dependency>
 		<dependency> <!-- spring + hibernate -->
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
@@ -102,17 +101,27 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>[4.3, 4.3.99]</version>
-		</dependency>	
-		<dependency> <!--  spring data (=> geen DAO implementaties meer nodig) -->
+		</dependency>
+		<dependency> <!-- spring data (=> geen DAO implementaties meer nodig) -->
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-jpa</artifactId>
 			<version>[1.6.0,]</version>
 		</dependency>
-		<dependency> <!--  testen met een in-memory database -->
+		<dependency> <!-- testen met een in-memory database -->
 			<groupId>org.wisdom-framework</groupId>
 			<artifactId>hsqldb</artifactId>
 			<version>[2.3,]</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency> <!--  spring security -->
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>[3.2,3.99]</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>[3.2,3.99]</version>
 		</dependency>
 	</dependencies>
 </project>
